@@ -7,11 +7,11 @@ library("ggplot2")
               #, destfile = paste(path, "dataFiles.zip", sep = "/"))
 #unzip(zipfile = "dataFiles.zip")
 
-# Load the NEI & SCC data frames.
+
 NEI <- data.table::as.data.table(x = readRDS("summarySCC_PM25.rds"))
 SCC <- data.table::as.data.table(x = readRDS("Source_Classification_Code.rds"))
 
-# Subset coal combustion related NEI data
+
 combustionRelated <- grepl("comb", SCC[, SCC.Level.One], ignore.case=TRUE)
 coalRelated <- grepl("coal", SCC[, SCC.Level.Four], ignore.case=TRUE) 
 combustionSCC <- SCC[combustionRelated & coalRelated, SCC]
